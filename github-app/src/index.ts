@@ -39,6 +39,28 @@ export default (app: Probot, { getRouter }) => {
     await context.octokit.issues.createComment(prComment);
   });
 
+  app.on("issue_comment.created", async (context) => {
+    const comment = context.payload.comment;
+    // Easy way to check if comment is a pull request
+    if (!comment.html_url.includes("pull")) {
+      return;
+    }
+
+    if (!comment.body.includes("shekar-bot review")) {
+      return;
+    }
+
+    // For now, just approve the PR with a comment
+    const prCommentText = "This looks great!";
+    const approval = context.issue({
+      body: prCommentText,
+      event: "APPROVE",
+      pull_number: context.payload.issue.number,
+    });
+    // @ts-ignore
+    await context.octokit.pulls.createReview(approval);
+  });
+
   // Can tack on arbitrary endpoints here
   const router = getRouter("/my-example-app");
   // @ts-ignore
