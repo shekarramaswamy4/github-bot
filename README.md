@@ -9,7 +9,9 @@ There are two key piece of functionality to the bot:
 - Autosummarization of python files that were in a PR. When a PR is opened, the `shekar-bot` automatically summarizes the changes
 - Approval of a PR on demand. If you type in `shekar-bot review`, `shekar-bot` will automatically approve the PR with a friendly comment.
 
-## Demo
+## Demo Video
+
+https://www.loom.com/share/8f733d5e6b2c4140af39516fb57fad7b
 
 ## How it works
 
@@ -27,8 +29,8 @@ Pull the repo, and run `yarn dev` in the `github-app` directory.
 
 You have two options to develop the bot:
 
-- ask me for the .env file to try it out on this repository
 - use the same source code, but spin up a github app in your own repository
+- ask me for the .env file and collaborator access to try it out on this repository
 
 ## Known Limitations
 
@@ -40,6 +42,12 @@ Between a Github app and a separate oauth'd user, the core code and functionalit
 
 ## Deploying in an customer's environment
 
-Here are the steps that would be needed if we were to "sell" this to an end customer:
+Here are the steps that would be needed if we were to integrate this to an end customer. This would be the most advanced form of the integration, where they want to do everything within their own environment. Parts of this can be simplified if users are more comfortable with a hybrid approach.
 
--
+- We give them a template to deploy their own Github app
+- We give them a webserver (similar to `index.ts`) to run in house on their own infrastructure. Will be dockerized and easily deployable within their environment. I also included a simple healthcheck endpoint to the webserver to show how this could work in a standard Kubernetes environment.
+- We give them a model fine tuned on their data, similar to what's going on in `huggingface.ts`.
+
+And that's it! Should be straightforward.
+
+There are a lot more complicated things we can do with Github's `octokit`, including leaving comments on specific lines of code or even updating PRs ourselves with unit tests. Everything is customizable.
