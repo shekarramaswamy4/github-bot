@@ -18,7 +18,9 @@
     "test": "jest"
   },
   "dependencies": {
+    "@types/node-fetch": "^2.6.2",
     "@types/pino-std-serializers": "^4.0.0",
+    "node-fetch": "2.6.1",
     "probot": "^12.2.4"
   },
   "devDependencies": {
