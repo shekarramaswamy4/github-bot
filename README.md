@@ -1,13 +1,15 @@
 # github-bot
 
-This repo is a demo of how a Github bot can summarize and review pull requests. The actual code of the bot is in `github-app`, and is deployed as a Github App using the [probot library](https://probot.github.io/).
+This repo is a demo of how a Github app can summarize and review pull requests. The actual code of the app is in `github-app`, and is deployed as a Github App using the [probot library](https://probot.github.io/).
 
 The code in github-app also spins up a local webserver as well as a webhook proxy using `smee.io`.
 
-There are two key piece of functionality to the bot:
+There are two key piece of functionality to the app:
 
 - Autosummarization of python files that were in a PR. When a PR is opened, the `shekar-bot` automatically summarizes the changes
 - Approval of a PR on demand. If you type in `shekar-bot review`, `shekar-bot` will automatically approve the PR with a friendly comment.
+
+Check out [this sample PR](https://github.com/shekarramaswamy4/github-bot/pull/7) or the demo video below to see it in action.
 
 ## Demo Video
 
@@ -27,7 +29,7 @@ The webhook is then processed by a target server and actions are taken appropria
 
 Pull the repo, and run `yarn dev` in the `github-app` directory.
 
-You have two options to develop the bot:
+You have two options to develop the app:
 
 - use the same source code, but spin up a github app in your own repository
 - ask me for the .env file and collaborator access to try it out on this repository
@@ -45,9 +47,9 @@ Between a Github app and a separate oauth'd user, the core code and functionalit
 Here are the steps that would be needed if we were to integrate this to an end customer. This would be the most advanced form of the integration, where they want to do everything within their own environment. Parts of this can be simplified if users are more comfortable with a hybrid approach.
 
 - We give them a template to deploy their own Github app
-- We give them a webserver (similar to `index.ts`) to run in house on their own infrastructure. Will be dockerized and easily deployable within their environment. I also included a simple healthcheck endpoint to the webserver to show how this could work in a standard Kubernetes environment.
+- We give them a webserver (similar to `index.ts`) to run in house on their own infrastructure. It will be dockerized and easily deployable within their environment. I also included a simple healthcheck endpoint to the webserver to show how this could work in a standard Kubernetes environment.
 - We give them a model fine tuned on their data, similar to what's going on in `huggingface.ts`.
 
-And that's it! Should be straightforward.
+And that's it!
 
 There are a lot more complicated things we can do with Github's `octokit`, including leaving comments on specific lines of code or even updating PRs ourselves with unit tests. Everything is customizable.
