@@ -25,6 +25,12 @@ On PR creation and special comments, a webhook is sent from the app to the speci
 
 The webhook is then processed by a target server and actions are taken appropriately.
 
+For the app itself, it's possible to customize:
+
+- the name (`shekar-bot` to anything else)
+- the profile picture
+- the scope of access within the repo (right now `shekar-bot` has read and write access to everything)
+
 ## Running + Testing locally
 
 Pull the repo, and run `yarn dev` in the `github-app` directory.
