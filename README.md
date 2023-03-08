@@ -38,7 +38,7 @@ You have two options to develop the app:
 
 Since this is a Github App, it isn't possible to actually mention the bot using the "@" symbol. This could take away the "magic" of a separate AI agent, but only marginally so in my opinion. Additionally, in my experience, companies are more hesitant to allow full access to a "bot user" masquerading as a real user.
 
-The alternative was to create a full fledged separate user and automate their actions, which requires a bit more work as you'd need to handle oauth in a separate webserver. However, the code itself would largely stay the same.
+The alternative was to create a full fledged separate user and automate their actions, which requires a bit more work as you'd need to handle oauth in a separate webserver. However, the core logic would largely stay the same.
 
 Between a Github app and a separate oauth'd user, the core code and functionality would approximately be equivalent. As a result, I decided to use a Github app as an MVP because it would be quicker to implement.
 
